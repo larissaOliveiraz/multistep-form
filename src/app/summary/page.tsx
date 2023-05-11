@@ -9,7 +9,7 @@ const Summary = () => {
    const { plan, addons } = useContext(InfoContext);
 
    const addonList = [];
-   let total = plan.price;
+   let total = 0;
 
    for (let item of addons) {
       for (let addon of addonData) {
@@ -72,7 +72,7 @@ const Summary = () => {
                Total ({plan.type === "mo" ? "per month" : "per year"})
             </p>
             <span className="text-xl font-extrabold text-indigo-900">
-               {total}/{plan.type}
+               {total + plan.price}/{plan.type}
             </span>
          </div>
 
