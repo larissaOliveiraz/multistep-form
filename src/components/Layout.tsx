@@ -24,13 +24,13 @@ export const Layout = ({ children }: Props) => {
                   number={2}
                   step="step 2"
                   title="select plan"
-                  active={pathname === "/plans"}
+                  active={pathname === "/plan"}
                />
                <Step
                   number={3}
                   step="step 3"
                   title="add-ons"
-                  active={pathname === "/addons"}
+                  active={pathname === "/addon"}
                />
                <Step
                   number={4}

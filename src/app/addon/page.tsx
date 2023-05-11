@@ -3,10 +3,12 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { AddOn } from "@/types/AddOn";
 import { addons } from "@/utils/AddOns";
+import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 
 const AddOn = () => {
    const [checked, setChecked] = useState<string[]>([]);
+   const router = useRouter();
 
    const planStorage =
       typeof window !== "undefined" && localStorage.getItem("plan");
@@ -27,6 +29,7 @@ const AddOn = () => {
       event.preventDefault();
 
       localStorage.setItem("addons", JSON.stringify(checked));
+      router.push("/summary");
    };
 
    return (
@@ -46,13 +49,15 @@ const AddOn = () => {
                   return (
                      <div
                         onClick={() => handleSelect(item)}
-                        className={`p-3 border-2 rounded-lg cursor-pointer ${
+                        className={`flex items-center justify-between gap-4 p-3 border-2 rounded-lg cursor-pointer ${
                            active && "border-indigo-900"
                         }`}
                      >
                         <div>
-                           <h3>{item.title}</h3>
-                           <p>{item.subtitle}</p>
+                           <h3 className="font-bold">{item.title}</h3>
+                           <p className="text-sm text-gray-400">
+                              {item.subtitle}
+                           </p>
                         </div>
                         <span>
                            {planPrice}/{planType}
