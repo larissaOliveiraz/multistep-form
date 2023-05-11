@@ -1,25 +1,28 @@
 "use client";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import { InfoContext } from "@/context/InfoContext";
-import React, { useContext } from "react";
-import { addons as addonData } from "../../utils/AddOns";
+import { AddOn } from "@/types/AddOn";
+import React, { useState } from "react";
 
 const Summary = () => {
-   const { plan, addons } = useContext(InfoContext);
+   //GET 'ADDONS' FROM LOCALSTORAGE
+   const planStorage =
+      typeof window !== "undefined" && localStorage.getItem("plan");
+   const planJson = planStorage && JSON.parse(planStorage);
 
-   const addonList = [];
-   let total = 0;
+   //GET 'ADDONS' FROM LOCALSTORAGE
+   const addonStorage =
+      typeof window !== "undefined" && localStorage.getItem("addons");
+   const addonJson = addonStorage && JSON.parse(addonStorage);
 
-   for (let item of addons) {
-      for (let addon of addonData) {
-         if (addon.title === item) {
-            addonList.push(addon);
-            const addonSum =
-               plan.type === "mo" ? addon.type[0].price : addon.type[1].price;
-            total += addonSum;
-         }
-      }
+   const [plan, setPlan] = useState(planJson);
+   const [addons, setAddons] = useState<AddOn[]>(addonJson);
+
+   let totalAddons = 0;
+   for (let i of addons) {
+      plan.type === "mo"
+         ? (totalAddons += i.type[0].price)
+         : (totalAddons += i.type[1].price);
    }
 
    return (
@@ -35,14 +38,19 @@ const Summary = () => {
                   <p className="font-bold">
                      {plan.card} ({plan.type === "mo" ? "Monthly" : "Yearly"})
                   </p>
-                  <a className="text-sm text-gray-400 underline">Change</a>
+                  <a
+                     className="text-sm text-gray-400 underline cursor-pointer hover:text-indigo-900"
+                     href="/plan"
+                  >
+                     Change
+                  </a>
                </div>
                <p className="font-bold">
                   {plan.price}/{plan.type}
                </p>
             </div>
-            {addonList.length > 0 ? (
-               addonList.map((item) => {
+            {addons.length > 0 ? (
+               addons.map((item) => {
                   const addonPrice =
                      plan.type === "mo"
                         ? item.type[0].price
@@ -62,8 +70,8 @@ const Summary = () => {
                })
             ) : (
                <div>
-                  <span>-/-</span>
-                  <span>-/-</span>
+                  <span>--/-</span>
+                  <span>-/--</span>
                </div>
             )}
          </section>
@@ -72,7 +80,7 @@ const Summary = () => {
                Total ({plan.type === "mo" ? "per month" : "per year"})
             </p>
             <span className="text-xl font-extrabold text-indigo-900">
-               {total + plan.price}/{plan.type}
+               {totalAddons + plan.price}/{plan.type}
             </span>
          </div>
 

@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 
 const AddOn = () => {
-   const [checked, setChecked] = useState<string[]>([]);
+   const [checked, setChecked] = useState<AddOn[]>([]);
    const router = useRouter();
 
    const planStorage =
@@ -17,11 +17,11 @@ const AddOn = () => {
    const planType = planJson.type;
 
    const handleSelect = (item: AddOn) => {
-      if (checked.includes(item.title)) {
-         const newChecked = checked.filter((check) => check !== item.title);
+      if (checked.includes(item)) {
+         const newChecked = checked.filter((check) => check !== item);
          setChecked(newChecked);
       } else {
-         setChecked((state) => [...state, item.title]);
+         setChecked((state) => [...state, item]);
       }
    };
 
@@ -41,7 +41,7 @@ const AddOn = () => {
          <form onSubmit={(e) => handleSubmit(e)} className="mt-7 space-y-14">
             <div className="space-y-4">
                {addons.map((item) => {
-                  const active = checked.includes(item.title);
+                  const active = checked.includes(item);
                   const planPrice =
                      planType === "mo"
                         ? item.type[0].price
