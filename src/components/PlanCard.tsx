@@ -23,7 +23,7 @@ export const PlanCard = ({ title, type, price, active, onClick }: Props) => {
             } ${title === "Advanced" && "bg-red-700"} ${
                title === "Pro" && "bg-blue-900"
             }`}
-         ></div>
+         />
          <div className="leading-5">
             <p className="font-semibold ">{title}</p>
             <span className="text-sm text-gray-400">

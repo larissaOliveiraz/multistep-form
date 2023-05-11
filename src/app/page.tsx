@@ -4,7 +4,7 @@ import { Input } from "@/components/Input";
 
 export default function Home() {
    return (
-      <section className="text-indigo-900">
+      <div className="text-indigo-900">
          <Header
             title="Personal Info"
             subtitle="Please provide your name, email address and phone number."
@@ -26,6 +26,6 @@ export default function Home() {
             </div>
             <Footer title="Next step" />
          </form>
-      </section>
+      </div>
    );
 }
