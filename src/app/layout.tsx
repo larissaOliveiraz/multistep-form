@@ -1,6 +1,7 @@
 import { Layout } from "@/components/Layout";
 import "./globals.css";
 import { Nunito } from "next/font/google";
+import { InfoContextProvider } from "@/context/InfoContext";
 
 const font = Nunito({ subsets: ["latin"] });
 
@@ -17,7 +18,9 @@ export default function RootLayout({
    return (
       <html lang="en">
          <body className={font.className}>
-            <Layout>{children}</Layout>
+            <InfoContextProvider>
+               <Layout>{children}</Layout>
+            </InfoContextProvider>
          </body>
       </html>
    );
