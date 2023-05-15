@@ -41,7 +41,10 @@ const Plan = () => {
             title="Select your plan"
             subtitle="You have the option of monthly or yearly billing"
          />
-         <form onSubmit={(e) => handleSubmit(e)} className="space-y-16 mt-7">
+         <form
+            onSubmit={(e) => handleSubmit(e)}
+            className="flex flex-col justify-between mt-10 space-y-16"
+         >
             <div>
                {/* SELECT TYPE */}
                <div className="flex justify-center gap-3 mb-5">

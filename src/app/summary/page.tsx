@@ -2,6 +2,7 @@
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { AddOn } from "@/types/AddOn";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const Summary = () => {
@@ -25,8 +26,10 @@ const Summary = () => {
          : (totalAddons += i.type[1].price);
    }
 
+   const router = useRouter();
+
    return (
-      <div className="text-indigo-900">
+      <div className="flex flex-col justify-around h-full text-indigo-900">
          <Header
             title="Finishing up"
             subtitle="Souble-check everything is OK before confirming."
@@ -84,7 +87,7 @@ const Summary = () => {
             </span>
          </div>
 
-         <Footer title="Confirm" goBack />
+         <button onClick={() => router.push("/finish")}>Confirm</button>
       </div>
    );
 };

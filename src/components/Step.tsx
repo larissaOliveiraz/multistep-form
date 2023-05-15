@@ -3,11 +3,15 @@ type Props = {
    step: string;
    title: string;
    active: boolean;
+   onClick: () => void;
 };
 
-export const Step = ({ number, step, title, active }: Props) => {
+export const Step = ({ number, step, title, active, onClick }: Props) => {
    return (
-      <div className="flex items-center gap-3">
+      <div
+         onClick={onClick}
+         className="flex items-center gap-3 p-3 rounded-lg cursor-pointer hover:bg-indigo-500"
+      >
          <div
             className={`${
                active

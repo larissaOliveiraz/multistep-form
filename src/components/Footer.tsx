@@ -7,21 +7,9 @@ type Props = {
    goBack?: boolean;
 };
 
-export const Footer = ({ goBack, title }: Props) => {
-   const { back } = useRouter();
-
+export const Footer = ({ title }: Props) => {
    return (
-      <footer className={`flex ${goBack ? "justify-between" : "justify-end"}`}>
-         {goBack && (
-            <button
-               type="button"
-               onClick={() => back()}
-               className="font-semibold text-gray-400 outline-none hover:text-indigo-900"
-            >
-               Go Back
-            </button>
-         )}
-
+      <footer className="flex justify-end">
          <Button title={title} />
       </footer>
    );
