@@ -5,7 +5,7 @@ type Props = {
    subtitle: string;
    buttonTitle: string;
    onClick: () => void;
-   disabled: boolean;
+   disabled?: boolean;
    children: ReactNode;
 };
 

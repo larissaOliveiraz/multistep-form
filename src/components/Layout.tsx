@@ -41,7 +41,7 @@ export const Layout = ({ children }: Props) => {
                   number={4}
                   step="step 4"
                   title="summary"
-                  active={pathname === "/summary"}
+                  active={pathname === "/summary" || pathname === "/finish"}
                   onClick={() => push("/summary")}
                />
             </section>
