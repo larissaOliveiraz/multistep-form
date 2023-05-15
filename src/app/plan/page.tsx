@@ -33,12 +33,15 @@ const Plan = () => {
       router.push("/addon");
    };
 
+   const buttonDisabled = !!card && !!type;
+
    return (
       <PageLayout
          title="Select your plan"
          subtitle="You have the option of monthly or yearly billing"
          buttonTitle="Next Step"
          onClick={handleSubmit}
+         disabled={!buttonDisabled}
       >
          <form className="flex flex-col text-indigo-900 justify-between space-y-16">
             <div>

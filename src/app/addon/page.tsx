@@ -37,6 +37,7 @@ const AddOn = () => {
          subtitle="Add-ons help enhance your gaming experience"
          buttonTitle="Next Step"
          onClick={handleSubmit}
+         disabled
       >
          <form className="space-y-14 text-indigo-900">
             <div className="space-y-4">

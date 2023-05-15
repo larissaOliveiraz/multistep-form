@@ -35,6 +35,7 @@ const Summary = () => {
          subtitle="Souble-check everything is OK before confirming."
          buttonTitle="Confirm"
          onClick={() => router.push("/finish")}
+         disabled
       >
          <div className="flex flex-col justify-around h-full text-indigo-900">
             <section className="w-full p-4 mb-4 bg-gray-100 rounded-lg mt-7">
