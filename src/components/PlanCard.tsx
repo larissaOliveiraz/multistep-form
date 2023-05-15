@@ -1,6 +1,3 @@
-import { plans } from "@/utils/Plans";
-import React, { useState } from "react";
-
 type Props = {
    title: string;
    type: string;

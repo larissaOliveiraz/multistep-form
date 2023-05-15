@@ -1,6 +1,4 @@
 "use client";
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
 import { PageLayout } from "@/components/PageLayout";
 import { AddOn } from "@/types/AddOn";
 import { useRouter } from "next/navigation";

@@ -2,7 +2,6 @@
 import { Step } from "@/components/Step";
 import { usePathname, useRouter } from "next/navigation";
 import { ReactNode } from "react";
-import { Footer } from "./Footer";
 
 type Props = {
    children: ReactNode;

@@ -1,11 +1,9 @@
 "use client";
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
 import { PageLayout } from "@/components/PageLayout";
 import { AddOn } from "@/types/AddOn";
 import { addons } from "@/utils/AddOns";
 import { useRouter } from "next/navigation";
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 
 const AddOn = () => {
    const [checked, setChecked] = useState<AddOn[]>([]);

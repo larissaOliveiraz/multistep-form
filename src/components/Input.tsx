@@ -1,5 +1,4 @@
 "use client";
-import { InputType } from "@/types/InputType";
 import { useState } from "react";
 
 type Props = {

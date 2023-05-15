@@ -1,5 +1,4 @@
 "use client";
-import { Footer } from "@/components/Footer";
 import { PageLayout } from "@/components/PageLayout";
 import { PlanCard } from "@/components/PlanCard";
 import { Plan } from "@/types/Plan";
