@@ -1,11 +1,11 @@
 "use client";
 import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
+import { PageLayout } from "@/components/PageLayout";
 import { PlanCard } from "@/components/PlanCard";
 import { Plan } from "@/types/Plan";
 import { plans } from "@/utils/Plans";
 import { useRouter } from "next/navigation";
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 
 type CardType = "Arcade" | "Advanced" | "Pro" | "";
 type PlanType = "mo" | "yr" | "";
@@ -28,31 +28,27 @@ const Plan = () => {
       type === "yr" && setPrice(plan.type[1].price);
    };
 
-   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-      event.preventDefault();
-
+   const handleSubmit = () => {
       localStorage.setItem("plan", JSON.stringify({ card, type, price }));
       router.push("/addon");
    };
 
    return (
-      <div className="text-indigo-900">
-         <Header
-            title="Select your plan"
-            subtitle="You have the option of monthly or yearly billing"
-         />
-         <form
-            onSubmit={(e) => handleSubmit(e)}
-            className="flex flex-col justify-between mt-10 space-y-16"
-         >
+      <PageLayout
+         title="Select your plan"
+         subtitle="You have the option of monthly or yearly billing"
+         buttonTitle="Next Step"
+         onClick={handleSubmit}
+      >
+         <form className="flex flex-col text-indigo-900 justify-between space-y-16">
             <div>
                {/* SELECT TYPE */}
-               <div className="flex justify-center gap-3 mb-5">
+               <div className="flex justify-center  gap-3 mb-5">
                   {["mo", "yr"].map((item) => (
                      <button
                         type="button"
                         onClick={() => handleSelectType(item)}
-                        className={`p-1 px-2  rounded-lg outline-none  ${
+                        className={`p-1 px-2 w-full  rounded-lg outline-none  ${
                            type === item
                               ? "bg-indigo-900 hover:bg-indigo-900 text-gray-100"
                               : "bg-gray-100 text-indigo-900 hover:bg-indigo-100"
@@ -81,9 +77,8 @@ const Plan = () => {
                   ))}
                </div>
             </div>
-            <Footer title="Next step" goBack />
          </form>
-      </div>
+      </PageLayout>
    );
 };
 

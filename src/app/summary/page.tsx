@@ -1,6 +1,7 @@
 "use client";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { PageLayout } from "@/components/PageLayout";
 import { AddOn } from "@/types/AddOn";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -29,66 +30,67 @@ const Summary = () => {
    const router = useRouter();
 
    return (
-      <div className="flex flex-col justify-around h-full text-indigo-900">
-         <Header
-            title="Finishing up"
-            subtitle="Souble-check everything is OK before confirming."
-         />
-
-         <section className="w-full p-4 mb-4 bg-gray-100 rounded-lg mt-7">
-            <div className="flex items-center justify-between pb-5 mb-5 border-b-2">
-               <div className="leading-5">
+      <PageLayout
+         title="Finishing up"
+         subtitle="Souble-check everything is OK before confirming."
+         buttonTitle="Confirm"
+         onClick={() => router.push("/finish")}
+      >
+         <div className="flex flex-col justify-around h-full text-indigo-900">
+            <section className="w-full p-4 mb-4 bg-gray-100 rounded-lg mt-7">
+               <div className="flex items-center justify-between pb-5 mb-5 border-b-2">
+                  <div className="leading-5">
+                     <p className="font-bold">
+                        {plan.card} ({plan.type === "mo" ? "Monthly" : "Yearly"}
+                        )
+                     </p>
+                     <a
+                        className="text-sm text-gray-400 underline cursor-pointer hover:text-indigo-900"
+                        href="/plan"
+                     >
+                        Change
+                     </a>
+                  </div>
                   <p className="font-bold">
-                     {plan.card} ({plan.type === "mo" ? "Monthly" : "Yearly"})
+                     {plan.price}/{plan.type}
                   </p>
-                  <a
-                     className="text-sm text-gray-400 underline cursor-pointer hover:text-indigo-900"
-                     href="/plan"
-                  >
-                     Change
-                  </a>
                </div>
-               <p className="font-bold">
-                  {plan.price}/{plan.type}
-               </p>
-            </div>
-            {addons.length > 0 ? (
-               addons.map((item) => {
-                  const addonPrice =
-                     plan.type === "mo"
-                        ? item.type[0].price
-                        : item.type[1].price;
-                  return (
-                     <div>
-                        <div className="flex items-center justify-between mt-2 text-sm">
-                           <p className="font-bold text-gray-500">
-                              {item.title}
-                           </p>
-                           <span className="font-bold text-gray-600">
-                              +{addonPrice}/{plan.type}
-                           </span>
+               {addons.length > 0 ? (
+                  addons.map((item) => {
+                     const addonPrice =
+                        plan.type === "mo"
+                           ? item.type[0].price
+                           : item.type[1].price;
+                     return (
+                        <div>
+                           <div className="flex items-center justify-between mt-2 text-sm">
+                              <p className="font-bold text-gray-500">
+                                 {item.title}
+                              </p>
+                              <span className="font-bold text-gray-600">
+                                 +{addonPrice}/{plan.type}
+                              </span>
+                           </div>
                         </div>
-                     </div>
-                  );
-               })
-            ) : (
-               <div>
-                  <span>--/-</span>
-                  <span>-/--</span>
-               </div>
-            )}
-         </section>
-         <div className="flex items-center justify-between px-4 mb-10">
-            <p className="text-sm font-bold text-gray-500">
-               Total ({plan.type === "mo" ? "per month" : "per year"})
-            </p>
-            <span className="text-xl font-extrabold text-indigo-900">
-               {totalAddons + plan.price}/{plan.type}
-            </span>
+                     );
+                  })
+               ) : (
+                  <div>
+                     <span>--/-</span>
+                     <span>-/--</span>
+                  </div>
+               )}
+            </section>
+            <div className="flex items-center justify-between px-4 mb-10">
+               <p className="text-sm font-bold text-gray-500">
+                  Total ({plan.type === "mo" ? "per month" : "per year"})
+               </p>
+               <span className="text-xl font-extrabold text-indigo-900">
+                  {totalAddons + plan.price}/{plan.type}
+               </span>
+            </div>
          </div>
-
-         <button onClick={() => router.push("/finish")}>Confirm</button>
-      </div>
+      </PageLayout>
    );
 };
 

@@ -1,6 +1,7 @@
 "use client";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { PageLayout } from "@/components/PageLayout";
 import { AddOn } from "@/types/AddOn";
 import { addons } from "@/utils/AddOns";
 import { useRouter } from "next/navigation";
@@ -25,20 +26,19 @@ const AddOn = () => {
       }
    };
 
-   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-      event.preventDefault();
-
+   const handleSubmit = () => {
       localStorage.setItem("addons", JSON.stringify(checked));
       router.push("/summary");
    };
 
    return (
-      <div className="text-indigo-900">
-         <Header
-            title="Pick add-ons"
-            subtitle="Add-ons help enhance your gaming experience"
-         />
-         <form onSubmit={(e) => handleSubmit(e)} className="mt-7 space-y-14">
+      <PageLayout
+         title="Pick add-ons"
+         subtitle="Add-ons help enhance your gaming experience"
+         buttonTitle="Next Step"
+         onClick={handleSubmit}
+      >
+         <form className="space-y-14 text-indigo-900">
             <div className="space-y-4">
                {addons.map((item) => {
                   const active = checked.includes(item);
@@ -66,9 +66,8 @@ const AddOn = () => {
                   );
                })}
             </div>
-            <Footer title="Next step" goBack />
          </form>
-      </div>
+      </PageLayout>
    );
 };
 
