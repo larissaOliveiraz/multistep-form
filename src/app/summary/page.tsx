@@ -53,7 +53,7 @@ const Summary = () => {
                      {plan.price}/{plan.type}
                   </p>
                </div>
-               {addons.length > 0 ? (
+               {addons && addons.length > 0 ? (
                   addons.map((item) => {
                      const addonPrice =
                         plan.type === "mo"
