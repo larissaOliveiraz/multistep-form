@@ -1,11 +1,11 @@
 import { ReactNode } from "react";
-import { Button } from "./Button";
 
 type Props = {
    title: string;
    subtitle: string;
    buttonTitle: string;
    onClick: () => void;
+   disabled: boolean;
    children: ReactNode;
 };
 
@@ -14,6 +14,7 @@ export const PageLayout = ({
    subtitle,
    buttonTitle,
    onClick,
+   disabled,
    children,
 }: Props) => {
    return (
@@ -26,7 +27,16 @@ export const PageLayout = ({
          </header>
          <div>{children}</div>
          <div className="flex justify-end items-end">
-            <Button title={buttonTitle} onClick={onClick} />
+            <button
+               type="button"
+               onClick={onClick}
+               disabled={disabled}
+               className={`${
+                  disabled && "bg-gray-300 hover:bg-gray-300"
+               } p-2 px-5 font-semibold text-gray-100 transition-all duration-200 bg-indigo-900 rounded-lg outline-none hover:bg-indigo-700`}
+            >
+               {buttonTitle}
+            </button>
          </div>
       </div>
    );

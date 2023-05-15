@@ -1,12 +1,13 @@
 "use client";
+import { InputType } from "@/types/InputType";
 import { useState } from "react";
 
 type Props = {
    type: string;
+   valueProps: any;
 };
 
-export const Input = ({ type }: Props) => {
-   const [value, setValue] = useState("");
+export const Input = ({ type, valueProps }: Props) => {
    const [focused, setFocused] = useState(false);
 
    return (
@@ -17,8 +18,7 @@ export const Input = ({ type }: Props) => {
       >
          <input
             type={type}
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
+            {...valueProps}
             onFocus={() => setFocused(true)}
             onBlur={() => setFocused(false)}
             className="flex-1 p-2 mx-2 font-bold outline-none"
